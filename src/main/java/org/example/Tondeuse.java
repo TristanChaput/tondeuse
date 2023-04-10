@@ -2,17 +2,50 @@ package org.example;
 
 public class Tondeuse {
 
-    private int x;
-    private int y;
-    private String direction;
+    private Coordinates coordinates;
 
-    public Tondeuse(int x, int y, String direction) {
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
+    public Tondeuse(Coordinates newCoordinates) {
+        coordinates = newCoordinates;
     }
 
     public String showPosition() {
-        return String.format("%d %d %s", x, y, direction);
+        return coordinates.toString();
+    }
+
+    public void move(String givenInstruction) {
+        Instruction instruction = Instruction.valueOf(givenInstruction);
+
+        switch (instruction) {
+            case A -> {
+                switch (coordinates.getDirection()) {
+                    case N -> addToY();
+                    case E -> addToX();
+                    case W -> minusToX();
+                    case S -> minusToY();
+                }
+            }
+            case D -> {}
+            case G -> {}
+        }
+    }
+
+    private void addToX() {
+        coordinates.setX(coordinates.getX() + 1);
+    }
+
+    private void minusToX() {
+        coordinates.setX(coordinates.getX() - 1);
+    }
+
+    private void addToY() {
+        coordinates.setY(coordinates.getY() + 1);
+    }
+
+    private void minusToY() {
+        coordinates.setY(coordinates.getY() - 1);
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }
