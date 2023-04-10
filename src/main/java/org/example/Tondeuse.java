@@ -24,7 +24,14 @@ public class Tondeuse {
                     case S -> minusToY();
                 }
             }
-            case D -> {}
+            case D -> {
+                switch (coordinates.getDirection()) {
+                    case N -> coordinates.setDirection(Direction.E);
+                    case E -> coordinates.setDirection(Direction.S);
+                    case W -> coordinates.setDirection(Direction.N);
+                    case S -> coordinates.setDirection(Direction.W);
+                }
+            }
             case G -> {}
         }
     }
