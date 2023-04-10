@@ -4,8 +4,11 @@ public class Tondeuse {
 
     private Coordinates coordinates;
 
-    public Tondeuse(Coordinates newCoordinates) {
+    private Coordinates limits;
+
+    public Tondeuse(Coordinates newCoordinates, Coordinates newLimits) {
         coordinates = newCoordinates;
+        limits = newLimits;
     }
 
     public String showPosition() {
@@ -60,19 +63,39 @@ public class Tondeuse {
     }
 
     private void addToX() {
-        coordinates.setX(coordinates.getX() + 1);
+        int newX = coordinates.getX() + 1;
+        setX(newX);
     }
 
     private void minusToX() {
-        coordinates.setX(coordinates.getX() - 1);
+        int newX = coordinates.getX() - 1;
+        setX(newX);
     }
 
     private void addToY() {
-        coordinates.setY(coordinates.getY() + 1);
+        int newY = coordinates.getY() + 1;
+        setY(newY);
     }
 
     private void minusToY() {
-        coordinates.setY(coordinates.getY() - 1);
+        int newY = coordinates.getY() - 1;
+        setY(newY);
+    }
+
+    private void setX(int newX) {
+        if(isInsideTheLimits(newX, limits.getX())){
+            coordinates.setX(newX);
+        }
+    }
+
+    private void setY(int newY) {
+        if(isInsideTheLimits(newY, limits.getY())){
+            coordinates.setY(newY);
+        }
+    }
+
+    private boolean isInsideTheLimits(int newValue, int limits) {
+        return limits >= newValue && newValue >= 0;
     }
 
     public Coordinates getCoordinates() {

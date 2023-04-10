@@ -5,6 +5,11 @@ public class Coordinates {
     private int y;
     private Direction direction;
 
+    public Coordinates(int newX, int newY) {
+        x = newX;
+        y = newY;
+    }
+
     public Coordinates(int newX, int newY, String newDirection) {
         x = newX;
         y = newY;
