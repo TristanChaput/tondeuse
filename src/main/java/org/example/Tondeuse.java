@@ -26,14 +26,37 @@ public class Tondeuse {
             }
             case D -> {
                 switch (coordinates.getDirection()) {
-                    case N -> coordinates.setDirection(Direction.E);
-                    case E -> coordinates.setDirection(Direction.S);
-                    case W -> coordinates.setDirection(Direction.N);
-                    case S -> coordinates.setDirection(Direction.W);
+                    case N -> moveToEast();
+                    case E -> moveToSouth();
+                    case W -> moveToNorth();
+                    case S -> moveToWest();
                 }
             }
-            case G -> {}
+            case G -> {
+                switch (coordinates.getDirection()) {
+                    case N -> moveToWest();
+                    case E -> moveToNorth();
+                    case W -> moveToSouth();
+                    case S -> moveToEast();
+                }
+            }
         }
+    }
+
+    private void moveToEast() {
+        coordinates.setDirection(Direction.E);
+    }
+
+    private void moveToSouth() {
+        coordinates.setDirection(Direction.S);
+    }
+
+    private void moveToNorth() {
+        coordinates.setDirection(Direction.N);
+    }
+
+    private void moveToWest() {
+        coordinates.setDirection(Direction.W);
     }
 
     private void addToX() {

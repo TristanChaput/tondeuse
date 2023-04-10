@@ -59,4 +59,22 @@ public class TondeuseTest {
         assertThat(tondeuse.getCoordinates().getY()).isEqualTo(expectedY);
         assertThat(tondeuse.getCoordinates().getDirection()).isEqualTo(expectedDirection);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0, N, 0, 0, W",
+            "1, 2, E, 1, 2, N",
+            "2, 1, W, 2, 1, S",
+            "3, 3, S, 3, 3, E"
+    })
+    void test_move_to_left(int x, int y, String direction, int expectedX, int expectedY, Direction expectedDirection){
+        Coordinates coordinates = new Coordinates(x, y, direction);
+        Tondeuse tondeuse = new Tondeuse(coordinates);
+
+        tondeuse.move("G");
+
+        assertThat(tondeuse.getCoordinates().getX()).isEqualTo(expectedX);
+        assertThat(tondeuse.getCoordinates().getY()).isEqualTo(expectedY);
+        assertThat(tondeuse.getCoordinates().getDirection()).isEqualTo(expectedDirection);
+    }
 }
