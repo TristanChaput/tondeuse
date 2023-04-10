@@ -2,11 +2,15 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TondeuseManager {
 
     private Coordinates limits;
+
+    private List<Tondeuse> tondeuses = new ArrayList<>();
 
     public TondeuseManager(File file){
         try {
@@ -15,12 +19,12 @@ public class TondeuseManager {
             this.limits = getLimitsFromFirstLine(scanner);
 
             while (scanner.hasNextLine()) {
+                Coordinates coordinates = getInitialPosition(scanner);
 
-                String line = scanner.nextLine();
+                String instructions = scanner.nextLine();
 
-                System.out.println(line);
+                tondeuses.add(new Tondeuse(coordinates, limits));
             }
-
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -38,7 +42,20 @@ public class TondeuseManager {
         return new Coordinates(x, y);
     }
 
+    private static Coordinates getInitialPosition(Scanner scanner) {
+        String initialPosition = scanner.nextLine();
+        String[] values = initialPosition.split(" ");
+        int x = Integer.parseInt(values[0]);
+        int y = Integer.parseInt(values[1]);
+        String direction = values[2];
+        return new Coordinates(x, y, direction);
+    }
+
     public Coordinates getLimits() {
         return limits;
+    }
+
+    public List<Tondeuse> getTondeuses() {
+        return tondeuses;
     }
 }
