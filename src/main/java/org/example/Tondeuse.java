@@ -1,11 +1,18 @@
 package org.example;
 
 public class Tondeuse {
-    public Tondeuse(int x, int y, String direction) {
 
+    private int x;
+    private int y;
+    private String direction;
+
+    public Tondeuse(int x, int y, String direction) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
     }
 
     public String showPosition() {
-        return "0 0 N";
+        return String.format("%d %d %s", x, y, direction);
     }
 }
