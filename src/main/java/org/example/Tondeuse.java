@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.List;
+import java.util.Objects;
+
 public class Tondeuse {
 
     private Coordinates coordinates;
@@ -9,6 +12,10 @@ public class Tondeuse {
     public Tondeuse(Coordinates newCoordinates, Coordinates newLimits) {
         coordinates = newCoordinates;
         limits = newLimits;
+    }
+
+    public void run(String instructions){
+
     }
 
     public String showPosition() {
@@ -100,5 +107,20 @@ public class Tondeuse {
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tondeuse tondeuse = (Tondeuse) o;
+
+        return Objects.equals(coordinates, tondeuse.coordinates);
+    }
+
+    @Override
+    public int hashCode() {
+        return coordinates != null ? coordinates.hashCode() : 0;
     }
 }

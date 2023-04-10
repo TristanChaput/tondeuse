@@ -44,4 +44,24 @@ public class Coordinates {
     public String toString() {
         return String.format("%d %d %s", x, y, direction);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coordinates that = (Coordinates) o;
+
+        if (x != that.x) return false;
+        if (y != that.y) return false;
+        return direction == that.direction;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        result = 31 * result + (direction != null ? direction.hashCode() : 0);
+        return result;
+    }
 }

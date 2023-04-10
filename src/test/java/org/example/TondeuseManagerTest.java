@@ -24,8 +24,10 @@ public class TondeuseManagerTest {
 
         TondeuseManager tondeuseManager = new TondeuseManager(file);
 
-        assertThat(tondeuseManager.getTondeuses().get(0).getCoordinates().getX()).isEqualTo(1);
-        assertThat(tondeuseManager.getTondeuses().get(0).getCoordinates().getY()).isEqualTo(2);
-        assertThat(tondeuseManager.getTondeuses().get(0).getCoordinates().getDirection()).isEqualTo(Direction.N);
+        Tondeuse expected = new Tondeuse(
+                new Coordinates(1, 2, "N"),
+                new Coordinates(5, 5));
+
+        assertThat(tondeuseManager.getTondeuses().containsKey(expected)).isTrue();
     }
 }
