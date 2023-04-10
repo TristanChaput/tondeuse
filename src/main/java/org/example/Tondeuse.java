@@ -14,8 +14,11 @@ public class Tondeuse {
         limits = newLimits;
     }
 
-    public void run(String instructions){
-
+    public String run(String instructions){
+        for(char instruction : instructions.toCharArray()){
+            move(String.valueOf(instruction));
+        }
+        return showPosition();
     }
 
     public String showPosition() {

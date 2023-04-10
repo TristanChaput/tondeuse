@@ -29,7 +29,9 @@ public class TondeuseManager {
     }
 
     public void run() {
-
+        tondeuses.forEach((tondeuse, instructions) -> {
+            System.out.println(tondeuse.run(instructions));
+        });
     }
 
     private Coordinates getLimitsFromFirstLine(Scanner scanner) {
